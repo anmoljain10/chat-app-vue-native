@@ -1,0 +1,85 @@
+<template>
+    <view class="sign-in-view">
+        <view class="text-center">
+            <text class="title">CHAT APP</text>
+        <view>
+        <text-input v-model="email" placeholder="Email" class = "message-box" />
+        <text-input v-model="password" placeholder="Password" class = "message-box" />
+        <touchable-opacity :on-press="()=>signIn()" class="button">
+            <view class="button-view">
+                <text class="login-text">Login</text>
+            </view>
+        </touchable-opacity>    
+        <button title="Register" class="button-style" :on-press="login"></button>
+    </view>    
+</template>
+
+<script>
+
+import { signIn } from '../user-auth'
+
+export default {
+    data:function() {
+        return {
+            email:'',
+            password:''
+        }
+    },
+    props:{
+        userSignedIn:{
+            Type:Function
+        },
+        login:{
+            Type:Function
+        }
+    },
+    methods:{
+        signIn:async function() {
+             var signedIn = await signIn(this.email,this.password);
+             this.userSignedIn(signedIn);
+        }
+    }
+}
+</script>
+
+<style scoped>
+.sign-in-view {
+  flex:1;  
+  justify-content: center
+}
+.button-style {
+  background-color: red;
+  color:white
+}
+.message-box {
+  background-color:white;
+  padding:10;
+  border-radius: 10;
+  margin:5
+}
+.button {
+    
+}
+.button-view {
+    background-color: white;
+    padding:10;
+    align-content: center;
+    align-items: center;
+    text-align:center;
+    border-radius:15;
+    margin:5
+}
+.login-text {
+   font-size:20;
+   font-weight:300
+}
+.title {
+    color:white;
+    font-style: italic;
+    font-size:30;
+    margin:5
+}
+.text-center {
+    text-align: center
+}
+</style>
