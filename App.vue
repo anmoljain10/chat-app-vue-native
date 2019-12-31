@@ -1,10 +1,11 @@
 <template>
   <view class="container">
-    <view v-if="(signedIn == true)" class="logout">
-       <button v-if="(mode == 'app')" title="Back" :on-press="goBack"/>
-       <button title="SignOut" :on-press="signOut"></button>
-    </view>  
-    <view v-if="(signedIn == true && mode === 'app')">
+   
+    <view v-if="(signedIn == true && mode === 'app')" class="sign-in-view">
+      <view v-if="(signedIn == true)" class="logout">
+        <button v-if="(mode == 'app')" title="Back" :on-press="goBack"/>
+        <button title="SignOut" :on-press="signOut"></button>
+      </view>  
       <chat :userId="userUid" :friendId="friendId"/>
     </view>
     <view v-else-if="(signedIn == false && mode === 'signup')" class="sign-in-view">
@@ -14,6 +15,10 @@
        <sign-in :login="login"  :user-signed-in="userSignedIn"/>
     </view>
     <view v-else-if="(mode == 'dashboard')">
+      <view v-if="(signedIn == true)" class="logout">
+        <button v-if="(mode == 'app')" title="Back" :on-press="goBack"/>
+        <button title="SignOut" :on-press="signOut"></button>
+      </view> 
       <users :userUid="userUid" :set-friend-uid="setFriendUid" :user-name="userName"/>
     </view>
   </view>
@@ -82,7 +87,6 @@ export default {
       }
     },
     signIn:async function(email,password) {
-     
       this.userUid = signedIn.uid;
       console.log(signedIn)
       if(signedIn) {
@@ -121,7 +125,7 @@ export default {
 
 <style>
 .container {
-  background-color:#444;
+  background-color:#B0A8B9;
   flex:1;
   padding-top:15;
   /* justify-content: center */
@@ -141,10 +145,14 @@ export default {
   margin:5
 }
 .logout {
+  flex-direction: row;
+  justify-content:space-around 
+}
+/* .logout {
   position:absolute;
   right:40;
   top:40
-}
+} */
 .sign-in-view {
   flex:1
 }

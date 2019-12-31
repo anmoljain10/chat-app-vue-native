@@ -1,7 +1,10 @@
 <template>
     <view>
         <view class="justify-center">
-            <text class="text-bold">Welcome,{{ userName }} </text>
+            <view class="user-info">
+                <image :source="require('../assets/user-male.png')" class="profile-pic"/>
+                <text class="text-bold">{{ userName }} </text>
+            </view>
             <text class="text-white">Contacts</text>
         </view>
         <flat-list :data = 'users'
@@ -41,15 +44,17 @@ export default {
                 padding:15,
                 backgroundColor:'white',
                 borderRadius:10,
-                margin:3,
-                alignItems:'center'
+                alignItems:'center',
+                borderBottomWidth:1,
+                borderTopWidth:1,
+                margin:1
 
             }} onPress={()=>{
                 this.setFriendUid(user.item.uid);
             }}>
                 <Image source={require('../assets/user-male.png')} style={{
-                    width:30,
-                    height:30,
+                    width:40,
+                    height:40,
                     marginRight:10
                 }}/>
                 <Text style={{
@@ -67,10 +72,10 @@ export default {
 .text-bold {
     font-size:20;
     padding:10;
-    color:white;
 }
 .justify-center {
-    text-align: center
+    text-align: center;
+    align-items: center;
 }
 .text-white {
     font-weight:bold;
@@ -79,5 +84,14 @@ export default {
     align-items:center;
     padding:10
 }
+.profile-pic {
+    width:60;
+    height:60;
+    padding:20
 
+}
+.user-info {
+    justify-content: center;
+    align-items: center
+}
 </style>
