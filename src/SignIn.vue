@@ -5,7 +5,7 @@
         <view>
         <text-input v-model="email" placeholder="Email" class = "message-box" />
         <text-input v-model="password" placeholder="Password" class = "message-box" />
-        <touchable-opacity :on-press="()=>signIn()" class="button">
+        <touchable-opacity :on-press="()=>signIn()" class="button" :disabled="(email == '' || password == '')">
             <view class="button-view">
                 <text class="login-text">Login</text>
             </view>
@@ -13,7 +13,6 @@
         <button title="Register" class="button-style" :on-press="login"></button>
     </view>    
 </template>
-
 <script>
 
 import { signIn } from '../user-auth'
