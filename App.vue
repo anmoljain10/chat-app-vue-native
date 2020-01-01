@@ -1,26 +1,37 @@
 <template>
   <view class="container">
-   
-    <view v-if="(signedIn == true && mode === 'app')" class="sign-in-view">
-      <view v-if="(signedIn == true)" class="logout">
-        <button v-if="(mode == 'app')" title="Back" :on-press="goBack"/>
-        <button title="SignOut" :on-press="signOut"></button>
-      </view>  
-      <chat :userId="userUid" :friendId="friendId"/>
-    </view>
-    <view v-else-if="(signedIn == false && mode === 'signup')" class="sign-in-view">
-       <register :login="login" :user-signed-in="userSignedIn" />
-    </view>
-     <view v-else-if="(signedIn == false && mode === 'signin')" class="sign-in-view">
-       <sign-in :login="login"  :user-signed-in="userSignedIn"/>
-    </view>
-    <view v-else-if="(mode == 'dashboard')">
-      <view v-if="(signedIn == true)" class="logout">
-        <button v-if="(mode == 'app')" title="Back" :on-press="goBack"/>
+    <view v-if="(signedIn == true && mode === 'app')" class="flex-1">
+        <view v-if="(signedIn == true)" class="logout">
+        <touchable-opacity :on-press="goBack" class="button-view">
+          <text>back</text>
+        </touchable-opacity>
         <button title="SignOut" :on-press="signOut"></button>
       </view> 
-      <users :userUid="userUid" :set-friend-uid="setFriendUid" :user-name="userName"/>
+      <chat 
+      :userId="userUid" 
+      :friendId="friendId"
+      :go-back="goBack"
+      :signed-in="signedIn"
+      :sign-out="signOut"
+      />
+    
     </view>
+    <view v-if="(signedIn == false && mode === 'signup')" class="sign-in-view">
+       <register :login="login" :user-signed-in="userSignedIn" />
+    </view>
+     <view v-if="(signedIn == false && mode === 'signin')" class="sign-in-view">
+       <sign-in :login="login"  :user-signed-in="userSignedIn"/>
+    </view>
+    <scroll-view v-if="(mode == 'dashboard')">
+      <users
+       :userUid="userUid"
+       :set-friend-uid="setFriendUid"
+       :user-name="userName"
+       :go-back="goBack"
+       :signed-in="signedIn"
+       :sign-out="signOut"
+        />
+    </scroll-view>
   </view>
 </template>
 
@@ -125,9 +136,11 @@ export default {
 
 <style>
 .container {
-  background-color:#B0A8B9;
+  background-color:#c2c2a3;
   flex:1;
-  padding-top:15;
+  padding-top:20;
+  padding-left:10;
+  padding-right:10
   /* justify-content: center */
 }
 .text-color-primary {
@@ -144,16 +157,23 @@ export default {
   border-radius: 10;
   margin:5
 }
-.logout {
-  flex-direction: row;
-  justify-content:space-around 
-}
+
 /* .logout {
   position:absolute;
   right:40;
   top:40
 } */
 .sign-in-view {
-  flex:1
+  flex:1;
+  justify-content: center
+}
+.justify-center {
+  justify-content: center
+}
+.chat-view {
+   flex:1;
+}
+.flex-1 {
+  flex:1;
 }
 </style>

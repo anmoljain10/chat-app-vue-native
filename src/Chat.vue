@@ -1,28 +1,28 @@
 <template>
     <view>
+      
      <view class="user">
        <image :source="require('../assets/user-male.png')" class="profile-pic"/>
        <text class="text-bold">
        {{ userName }}
        <text>
      </view> 
-      <view>
-        <text class="text-regular">Enter Message</text>
-        <text-input v-model="text" class="message-box" placeholder="Type Message" />
-        <button title="Send Message" class="button-style" :on-press="()=>sendMessage()" :disabled="(text == '')"></button>
+     <view class="message-view">
+          <text-input v-model="text" class="message-box" placeholder="Type Message" />
+          <touchable-opacity :on-press="()=>sendMessage()" :disabled="(text == '')" class="button-view">
+            <text class="color-white">Send</text>
+          </touchable-opacity>  
       </view>
-     <scroll-view :content-container-style="{contentContainer: {
-        paddingVertical: 20,
-        flex:0.6
+      <scroll-view :content-container-style="{contentContainer: {
+        flex:1
     }}">
        <flat-list :data='messages'
         :render-item= "(message) => renderMessage(message)"
         >
       </flat-list>
-     </scroll-view>
-     
+      </scroll-view>
     </view>
-      
+     
 </template>
 
 <script>
@@ -46,6 +46,15 @@ export default {
         },
         friendId:{
             Type:String
+        },
+           signedIn:{
+            Type:String
+        },
+        goBack:{
+            Type:Function
+        },
+        signOut:{
+            Type:Function
         }
     },
     mounted:async function() {
@@ -97,7 +106,7 @@ export default {
   background-color: white;
   padding:10;
   border-radius: 10;
-  margin:5
+  width:300
 }
 .username {
   position:absolute;
@@ -132,10 +141,33 @@ export default {
     height:60;
     padding:20
 }
-.flex-5 {
-  flex:0.5
-}
+
 .flex-1 {
   flex:1
+}
+.message-view {
+  flex-direction:row;
+  justify-content: space-evenly
+}
+.button-view {
+    background-color:#5c5c3d;
+    padding:5;
+    align-content: center;
+    align-items: center;
+    text-align:center;
+    border-radius:5;
+    margin:5
+}
+.color-white {
+  color:white
+}
+.logout {
+  position:absolute;
+  left:0;
+  bottom:0;
+  right:0
+}
+.bf {
+  background-color: #5c5c3d
 }
 </style>

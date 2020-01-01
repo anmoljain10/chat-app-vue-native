@@ -5,10 +5,17 @@
                 <image :source="require('../assets/user-male.png')" class="profile-pic"/>
                 <text class="text-bold">{{ userName }} </text>
             </view>
-            <text class="text-white">Contacts</text>
+             <touchable-opacity :on-press="signOut" class="button-view">
+          <text>Logout</text>
+        </touchable-opacity>
+          
         </view>
+          <text class="text-white">Contacts</text>
         <flat-list :data = 'users'
         :render-item= "(user) => renderUsers(user)"/>
+          <view v-if="(signedIn == true)" class="logout">
+        
+      </view> 
     </view>
 </template>
 
@@ -32,6 +39,15 @@ export default {
         },
         userName:{
             Type:String
+        },
+        signedIn:{
+            Type:String
+        },
+        goBack:{
+            Type:Function
+        },
+        signOut:{
+            Type:Function
         }
     },
     mounted:async function() {
@@ -74,8 +90,11 @@ export default {
     padding:10;
 }
 .justify-center {
+    flex-direction:row; 
     text-align: center;
     align-items: center;
+    justify-content: space-evenly;
+    padding-top:20
 }
 .text-white {
     font-weight:bold;
@@ -93,5 +112,18 @@ export default {
 .user-info {
     justify-content: center;
     align-items: center
+}
+.button-view {
+    background-color:#5c5c3d;
+    padding:10;
+    align-content: center;
+    align-items: center;
+    text-align:center;
+    border-radius:10;
+    margin:5
+}
+.logout {
+  flex-direction: row;
+  justify-content:space-around 
 }
 </style>

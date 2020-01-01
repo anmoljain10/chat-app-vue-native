@@ -47,7 +47,7 @@ async function getMessages(userId, friendId) {
    return messages;
 }
 async function addListener(userId,friendId) {
-  
+
     await firebase.firestore().collection('messages').where("sender", "==", friendId).where("sentTo", "==", userId).onSnapshot(async function(querySnapshot) {
       console.log(querySnapshot);
       console.log(querySnapshot._changes);

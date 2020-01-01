@@ -1,12 +1,14 @@
 <template>
-    <view class="register-view">
+    <view>
          <view class="text-center">
             <text class="title">CHAT APP</text>
         <view>
         <text-input v-model="email" placeholder="Email" class = "message-box" />
         <text-input v-model="password" placeholder="Password" class = "message-box" />
         <text-input v-model="name" placeholder="Username" class = "message-box" />
-        <button title="Register" color="#0073e6" class="button-style" :on-press="()=>register(email,password,name)" :disabled="(email == '' || name == '' || password == '')"></button>
+        <touchable-opacity color="#0073e6" class="button-view" :on-press="()=>register(email,password,name)" :disabled="(email == '' || name == '' || password == '')">
+            <text class="register-text">Register</text>
+        </touchable-opacity>
         <button title="Login" class="button-style" :on-press="login"></button>
     </view>    
 </template>
@@ -43,15 +45,15 @@ export default {
 </script>
 
 <style scoped>
-.button-style {
-  background-color: red;
-  color:white
+.register-view {
+
 }
 .message-box {
   background-color:white;
   padding:10;
   border-radius: 10;
-  margin:5
+  margin:5;
+  width:350
 }
 .register-view {
     flex:1;
@@ -64,6 +66,21 @@ export default {
     margin:5
 }
 .text-center {
+    align-items: center;
     text-align: center
+}
+.button-view {
+    background-color:#5c5c3d;
+    padding:5;
+    align-content: center;
+    align-items: center;
+    text-align:center;
+    border-radius:15;
+    margin:5
+}
+.register-text {
+   font-size:20;
+   color:white;
+   font-weight:300
 }
 </style>

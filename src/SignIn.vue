@@ -43,8 +43,7 @@ export default {
 
 <style scoped>
 .sign-in-view {
-  flex:1;  
-  justify-content: center
+  
 }
 .button-style {
   background-color: red;
@@ -54,14 +53,15 @@ export default {
   background-color:white;
   padding:10;
   border-radius: 10;
-  margin:5
+  margin:5;
+  width:350
 }
 .button {
     
 }
 .button-view {
-    background-color: white;
-    padding:10;
+    background-color:#5c5c3d;
+    padding:5;
     align-content: center;
     align-items: center;
     text-align:center;
@@ -70,6 +70,7 @@ export default {
 }
 .login-text {
    font-size:20;
+   color:white;
    font-weight:300
 }
 .title {
@@ -79,6 +80,7 @@ export default {
     margin:5
 }
 .text-center {
+    align-items: center;
     text-align: center
 }
 </style>
