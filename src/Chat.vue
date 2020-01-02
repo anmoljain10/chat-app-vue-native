@@ -150,7 +150,7 @@ export default {
   justify-content: space-evenly
 }
 .button-view {
-    background-color:#5c5c3d;
+    background-color:#b49ce2;
     padding:5;
     align-content: center;
     align-items: center;

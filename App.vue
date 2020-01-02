@@ -1,5 +1,10 @@
 <template>
+<view :style="{flex:1}">
+  <view v-if="isLoading"  :style="{flex:1, justifyContent: 'center',alignItems:'center'}">
+          <activity-indicator size="large" color="black" />
+    </view>
   <view class="container">
+    <view v-if="!isLoading">
     <view v-if="(signedIn == true && mode === 'app')" class="flex-1">
         <view v-if="(signedIn == true)" class="logout">
         <touchable-opacity :on-press="goBack" class="button-view">
@@ -14,7 +19,6 @@
       :signed-in="signedIn"
       :sign-out="signOut"
       />
-    
     </view>
     <view v-if="(signedIn == false && mode === 'signup')" class="sign-in-view">
        <register :login="login" :user-signed-in="userSignedIn" />
@@ -33,6 +37,8 @@
         />
     </scroll-view>
   </view>
+  </view>
+</view>
 </template>
 
 <script>
@@ -55,11 +61,13 @@ export default {
       signedIn:false,
       mode:'signin',
       userName:'',
+      isLoading:false,
       userUid:'',
       friendId:''
     } 
   },
   async mounted() {
+
     var that = this
      await firebase.auth().onAuthStateChanged(function(user){
       if (user) {
@@ -136,9 +144,9 @@ export default {
 
 <style>
 .container {
-  background-color:#c2c2a3;
+  background-color:#6839c6;
+  /* padding-top:20; */
   flex:1;
-  padding-top:20;
   padding-left:10;
   padding-right:10
   /* justify-content: center */
@@ -146,10 +154,6 @@ export default {
 .text-color-primary {
   color: white;
   font-size:20
-}
-.button-style {
-  background-color: red;
-  color:white
 }
 .message-box {
   background-color:white;

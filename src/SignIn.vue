@@ -45,10 +45,6 @@ export default {
 .sign-in-view {
   
 }
-.button-style {
-  background-color: red;
-  color:white
-}
 .message-box {
   background-color:white;
   padding:10;
@@ -56,11 +52,8 @@ export default {
   margin:5;
   width:350
 }
-.button {
-    
-}
 .button-view {
-    background-color:#5c5c3d;
+    background-color:#432581;
     padding:5;
     align-content: center;
     align-items: center;

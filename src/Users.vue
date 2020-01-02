@@ -114,7 +114,7 @@ export default {
     align-items: center
 }
 .button-view {
-    background-color:#5c5c3d;
+    background-color:#b49ce2;
     padding:10;
     align-content: center;
     align-items: center;
