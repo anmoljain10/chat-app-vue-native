@@ -1,10 +1,6 @@
 <template>
-<view :style="{flex:1}">
-  <view v-if="isLoading"  :style="{flex:1, justifyContent: 'center',alignItems:'center'}">
-          <activity-indicator size="large" color="black" />
-    </view>
+<safe-area-view :style="{flex:1}">
   <view class="container">
-    <view v-if="!isLoading">
     <view v-if="(signedIn == true && mode === 'app')" class="flex-1">
         <view v-if="(signedIn == true)" class="logout">
         <touchable-opacity :on-press="goBack" class="button-view">
@@ -37,19 +33,14 @@
         />
     </scroll-view>
   </view>
-  </view>
-</view>
+</safe-area-view>
 </template>
 
 <script>
 import { sendMessage, getMessages } from './send-message'
 import { register, signIn } from './user-auth'
 import firebase from 'react-native-firebase'
-import Users from './src/Users'
-import Auth from './src/Auth'
-import Chat from './src/Chat'
-import Register from './src/Register'
-import SignIn from './src/SignIn'
+import { Users, Chat, Register, SignIn } from './src'
 
 export default {
   components:{ Users, Chat, Register,SignIn },
@@ -144,12 +135,10 @@ export default {
 
 <style>
 .container {
-  background-color:#6839c6;
-  /* padding-top:20; */
+  background-color:rgba(104, 57, 198,0.9);
   flex:1;
-  padding-left:10;
-  padding-right:10
-  /* justify-content: center */
+  padding-left:5;
+  padding-right:5
 }
 .text-color-primary {
   color: white;
@@ -161,12 +150,6 @@ export default {
   border-radius: 10;
   margin:5
 }
-
-/* .logout {
-  position:absolute;
-  right:40;
-  top:40
-} */
 .sign-in-view {
   flex:1;
   justify-content: center

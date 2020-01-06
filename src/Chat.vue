@@ -1,6 +1,5 @@
 <template>
-    <view>
-      
+    <view> 
      <view class="user">
        <image :source="require('../assets/user-male.png')" class="profile-pic"/>
        <text class="text-bold">
@@ -9,8 +8,10 @@
      </view> 
      <view class="message-view">
           <text-input v-model="text" class="message-box" placeholder="Type Message" />
-          <touchable-opacity :on-press="()=>sendMessage()" :disabled="(text == '')" class="button-view">
-            <text class="color-white">Send</text>
+          <touchable-opacity :on-press="()=>sendMessage()" :disabled="(text == '')">
+            <view  class="button-view">
+              <text class="color-white">Send</text>
+            </view>
           </touchable-opacity>  
       </view>
       <scroll-view :content-container-style="{contentContainer: {
@@ -60,7 +61,7 @@ export default {
     mounted:async function() {
      this.userName = await getUserName(this.friendId)
     //  this.messages = await getMessages(this.userId, this.friendId)
-     this.messages = await addListener(this.userId, this.friendId);
+     this.messages = await addListener(this.userId, this.friendId, this.messages);
     },
     updated() {
     },
@@ -147,15 +148,15 @@ export default {
 }
 .message-view {
   flex-direction:row;
-  justify-content: space-evenly
+  justify-content: space-evenly;
+  align-items: center
 }
 .button-view {
+    padding:10;
     background-color:#b49ce2;
-    padding:5;
-    align-content: center;
     align-items: center;
     text-align:center;
-    border-radius:5;
+    border-radius:10;
     margin:5
 }
 .color-white {

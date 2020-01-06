@@ -5,10 +5,9 @@
                 <image :source="require('../assets/user-male.png')" class="profile-pic"/>
                 <text class="text-bold">{{ userName }} </text>
             </view>
-             <touchable-opacity :on-press="signOut" class="button-view">
+        <touchable-opacity :on-press="signOut" class="button-view">
           <text>Logout</text>
         </touchable-opacity>
-          
         </view>
           <text class="text-white">Contacts</text>
         <flat-list :data = 'users'
