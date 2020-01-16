@@ -1,12 +1,13 @@
 <template>
 <safe-area-view :style="{flex:1}">
+     <image-background :source="require('./assets/chat2.png')" :style="{ flex: 1 }" >
   <view class="container">
+  
     <view v-if="(signedIn == true && mode === 'app')" class="flex-1">
         <view v-if="(signedIn == true)" class="logout">
         <touchable-opacity :on-press="goBack" class="button-view">
-          <text>back</text>
+          <text class="back-text">Back</text>
         </touchable-opacity>
-        <button title="SignOut" :on-press="signOut"></button>
       </view> 
       <chat 
       :userId="userUid" 
@@ -32,7 +33,9 @@
        :sign-out="signOut"
         />
     </scroll-view>
+ 
   </view>
+      </image-background>
 </safe-area-view>
 </template>
 
@@ -135,7 +138,6 @@ export default {
 
 <style>
 .container {
-  background-color:rgba(104, 57, 198,0.9);
   flex:1;
   padding-left:5;
   padding-right:5
@@ -162,5 +164,8 @@ export default {
 }
 .flex-1 {
   flex:1;
+}
+.back-text {
+  font-size:16
 }
 </style>

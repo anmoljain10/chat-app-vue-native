@@ -70,7 +70,7 @@ export default {
     text-align: center
 }
 .button-view {
-    background-color:#432581;
+    background-color:#0059b3;
     padding:5;
     align-content: center;
     align-items: center;

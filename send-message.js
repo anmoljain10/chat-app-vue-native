@@ -5,6 +5,7 @@ import firebase from 'react-native-firebase'
 async function sendMessage(userId,friendId,text) {
     try{
         await firebase.firestore().collection('messages').doc().set({
+            key:Date.now().toString(),
             message: text,
             time: new Date(),
             timestamp: Date.now(),
@@ -55,6 +56,7 @@ async function addListener(userId,friendId,messages) {
            if(doc._type == 'added') {
                console.log(doc,doc.doc.data());
                messages.push(doc.doc.data())
+               messages.sort((message1, message2) => message1.timestamp - message2.timestamp)
            }
         })
     });
@@ -65,13 +67,13 @@ async function addListener(userId,friendId,messages) {
             if (doc._type == 'added') {
                 console.log(doc, doc.doc.data());
                 messages.push(doc.doc.data())
+                messages.sort((message1, message2) => message1.timestamp - message2.timestamp)
             }
         })
     });
     console.log(messages);
-    messages.sort((message1, message2) => {
-        return (message1.timestamp > message2.timestamp ? 1 : message1.timestamp < message2.timestamp ? -1 : 0)
-    }) 
+    // messages.sort((message1, message2) => message1.timestamp.seconds - message2.timestamp.seconds)
+    console.log(messages); 
     return messages;
 }
 

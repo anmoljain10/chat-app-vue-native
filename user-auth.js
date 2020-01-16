@@ -27,16 +27,16 @@ async function signIn(email,password) {
         if (signedIn) {
             return signedIn.user;
         }
-        else {
-            return null;
-        }
     } catch (e) {
-       return null
+        console.log(e.message);
+        return {
+            errorMessage:e.message
+        }
     }
 }
 async function addUser(userObject, name) {
     console.log("name",name);
-     firebase.firestore().collection('users').doc().set({
+     firebase.firestore().collection('users').doc().set({ 
         uid:userObject.user.uid,
         name:name,
         email:userObject.user.email

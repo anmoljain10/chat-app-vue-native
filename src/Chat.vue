@@ -38,7 +38,8 @@ export default {
         return {
             text:'',
             messages:[],
-            userName:''
+            userName:'',
+            date:''
         }
     },
     props:{
@@ -67,12 +68,15 @@ export default {
     },
     methods:{
     renderMessage:function(message) {
+     console.log(this.date);
       return(
-      <>
-      <View style={{
+        <View  key={message.item.time}>
+        <View 
+     
+      style={{
           flexDirection:message.item.sender == this.userId ? 'row-reverse':'row'
       }}>
-        {Platform.OS == 'android' && <Text>{message.item.time.getDate()}/{message.item.time.getMonth()}/{message.item.time.getFullYear()}</Text>}
+
       </View>
        <View style={{
          flexDirection:message.item.sender == this.userId ? 'row-reverse':'row'
@@ -87,12 +91,13 @@ export default {
         <Text style={{
           fontSize:15,
         }}>{message.item.message}</Text>
-         {Platform.OS == 'android' && <Text style={{
+               {message.item.time && <Text style={{
           fontSize:10
-        }}>{message.item.time.toLocaleTimeString('en-US')}</Text>}
+        }}>{message.item.time.toDate().toLocaleTimeString('en-US')}</Text>}
       </View>
       </View>
-      </>)
+      </View>)
+      this.date = message.item.time.toDate()
     },
      sendMessage:async function() {
       var newMessage = await sendMessage(this.userId,this.friendId,this.text);
@@ -153,7 +158,7 @@ export default {
 }
 .button-view {
     padding:10;
-    background-color:#b49ce2;
+    background-color:#0059b3;
     align-items: center;
     text-align:center;
     border-radius:10;

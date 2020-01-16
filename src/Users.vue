@@ -6,14 +6,13 @@
                 <text class="text-bold">{{ userName }} </text>
             </view>
         <touchable-opacity :on-press="signOut" class="button-view">
-          <text>Logout</text>
+          <text class="white-text">Logout</text>
         </touchable-opacity>
         </view>
           <text class="text-white">Contacts</text>
         <flat-list :data = 'users'
         :render-item= "(user) => renderUsers(user)"/>
           <view v-if="(signedIn == true)" class="logout">
-        
       </view> 
     </view>
 </template>
@@ -99,6 +98,7 @@ export default {
     font-weight:bold;
     color:white;
     margin-bottom:10;
+    font-size:20;
     align-items:center;
     padding:10
 }
@@ -106,14 +106,13 @@ export default {
     width:60;
     height:60;
     padding:20
-
 }
 .user-info {
     justify-content: center;
     align-items: center
 }
 .button-view {
-    background-color:#b49ce2;
+    background-color:#0059b3;
     padding:10;
     align-content: center;
     align-items: center;
@@ -124,5 +123,8 @@ export default {
 .logout {
   flex-direction: row;
   justify-content:space-around 
+}
+.white-text {
+    color:white
 }
 </style>
