@@ -61,7 +61,6 @@ export default {
     },
     mounted:async function() {
      this.userName = await getUserName(this.friendId)
-    //  this.messages = await getMessages(this.userId, this.friendId)
      this.messages = await addListener(this.userId, this.friendId, this.messages);
     },
     updated() {
