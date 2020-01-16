@@ -30,7 +30,7 @@ Also add, `apply plugin: 'com.google.gms.google-services'`on the top of this fil
 
 1. Open your project in firebase console and click on `add app +` button. A new screen will open.
 2. First add the BundleId (can be found in `Xcode>project.xcworkspace>general>bundle identifier`) of your project, project nickname and apple id (Optional). 
-3. Then download Google-Service-Info.plist file in the next step and add it using Xcode. Open Xcode> Click on your project name after opening project.xcworkspace file> click on folder with same name as project and select  `add files to project_name`>Add oogle-Service-Info.plist file.
+3. Then download Google-Service-Info.plist file in the next step and add it using Xcode. Open Xcode> Click on your project name after opening project.xcworkspace file> click on folder with same name as project and select  `add files to project_name`>Add Google-Service-Info.plist file.
 4. Now open terminal > ios folder > podfile. If pod file is not created, create a new one using command `pod init`.
 5. Add `pod Firebase/Core` and `pod Firebase/Analytics` to podfile.
 6. Add lines `@import Firebase` and `[FIRApp configure]` to AppDelegate.m file of your project.
