@@ -1,7 +1,7 @@
 <template>
     <view> 
      <view class="user">
-       <image :source="require('../assets/user-male.png')" class="profile-pic"/>
+       <image :source="require('../../assets/user-male.png')" class="profile-pic"/>
        <text class="text-bold">
        {{ userName }}
        <text>
@@ -29,9 +29,8 @@
 <script>
 import React from 'react'
 import { Text, View, TouchableOpacity , Dimensions, Platform } from 'react-native'
-import { sendMessage, getMessages,addListener} from '../send-message'
-import { getUserName } from '../user-auth'
-
+import { sendMessage, getMessages,addListener} from '../firebaseModules/send-message'
+import { getUserName } from '../firebaseModules/user-auth'
 
 export default {
     data:function() {

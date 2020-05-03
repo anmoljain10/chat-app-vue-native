@@ -15,7 +15,7 @@
 
 <script>
 
-import { register } from '../user-auth'
+import { register } from '../firebaseModules/user-auth'
 
 export default {
     data:function() {

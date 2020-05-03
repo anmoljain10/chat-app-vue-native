@@ -50,30 +50,22 @@ async function getMessages(userId, friendId) {
 async function addListener(userId,friendId,messages) {
     
     await firebase.firestore().collection('messages').where("sender", "==", friendId).where("sentTo", "==", userId).onSnapshot(async function(querySnapshot) {
-      console.log(querySnapshot);
       console.log(querySnapshot._changes);
        await querySnapshot._changes.forEach(function(doc) {
            if(doc._type == 'added') {
-               console.log(doc,doc.doc.data());
                messages.push(doc.doc.data())
                messages.sort((message1, message2) => message1.timestamp - message2.timestamp)
            }
         })
     });
     await firebase.firestore().collection('messages').where("sender", "==", userId).where("sentTo", "==", friendId).onSnapshot(async function (querySnapshot) {
-        console.log(querySnapshot);
-        console.log(querySnapshot._changes);
         await querySnapshot._changes.forEach(function (doc) {
             if (doc._type == 'added') {
-                console.log(doc, doc.doc.data());
                 messages.push(doc.doc.data())
                 messages.sort((message1, message2) => message1.timestamp - message2.timestamp)
             }
         })
     });
-    console.log(messages);
-    // messages.sort((message1, message2) => message1.timestamp.seconds - message2.timestamp.seconds)
-    console.log(messages); 
     return messages;
 }
 

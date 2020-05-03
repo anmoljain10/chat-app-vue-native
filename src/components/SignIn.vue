@@ -19,7 +19,7 @@
 </template>
 <script>
 
-import { signIn } from '../user-auth'
+import { signIn } from '../firebaseModules/user-auth'
 
 export default {
     data:function() {

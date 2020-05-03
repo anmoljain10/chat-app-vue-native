@@ -1,19 +1,15 @@
 import firebase from 'react-native-firebase'
 
 async function register(email, password, name) {
-
     try {
         const registered = await firebase.auth().createUserWithEmailAndPassword(email, password);
-        console.log(registered);
         if (registered) {
-            console.log("registered")
            await addUser(registered,name);
-            return registered.user;
+           return registered.user;
         }
         else {
             return null;
         }
-     
     } catch (e) {
         return null;
     }
@@ -35,13 +31,11 @@ async function signIn(email,password) {
     }
 }
 async function addUser(userObject, name) {
-    console.log("name",name);
      firebase.firestore().collection('users').doc().set({ 
         uid:userObject.user.uid,
         name:name,
         email:userObject.user.email
     }).then(res=>console.log(res));
-    ;
 }
 async function getUsers(userId) {
     console.log(userId)

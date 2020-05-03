@@ -2,7 +2,7 @@
     <view>
         <view class="justify-center">
             <view class="user-info">
-                <image :source="require('../assets/user-male.png')" class="profile-pic"/>
+                <image :source="require('../../assets/user-male.png')" class="profile-pic"/>
                 <text class="text-bold">{{ userName }} </text>
             </view>
         <touchable-opacity :on-press="signOut" class="button-view">
@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { getUsers } from '../user-auth';
+import { getUsers } from '../firebaseModules/user-auth';
 import React from 'react';
 import { TouchableOpacity, Text, Image } from 'react-native';
 
@@ -66,7 +66,7 @@ export default {
             }} onPress={()=>{
                 this.setFriendUid(user.item.uid);
             }}>
-                <Image source={require('../assets/user-male.png')} style={{
+                <Image source={require('../../assets/user-male.png')} style={{
                     width:40,
                     height:40,
                     marginRight:10
@@ -82,7 +82,6 @@ export default {
 </script>
 
 <style>
-
 .text-bold {
     font-size:20;
     padding:10;

@@ -2,9 +2,8 @@
 <safe-area-view :style="{flex:1}">
      <image-background :source="require('./assets/chat2.png')" :style="{ flex: 1 }" >
   <view class="container">
-  
     <view v-if="(signedIn == true && mode === 'app')" class="flex-1">
-        <view v-if="(signedIn == true)" class="logout">
+      <view v-if="(signedIn == true)" class="logout">
         <touchable-opacity :on-press="goBack" class="button-view">
           <text class="back-text">Back</text>
         </touchable-opacity>
@@ -40,10 +39,10 @@
 </template>
 
 <script>
-import { sendMessage, getMessages } from './send-message'
-import { register, signIn } from './user-auth'
+import { sendMessage, getMessages } from './src/firebaseModules/send-message'
+import { register, signIn } from './src/firebaseModules/user-auth'
 import firebase from 'react-native-firebase'
-import { Users, Chat, Register, SignIn } from './src'
+import { Users, Chat, Register, SignIn } from './src/components'
 
 export default {
   components:{ Users, Chat, Register,SignIn },
@@ -61,7 +60,6 @@ export default {
     } 
   },
   async mounted() {
-
     var that = this
      await firebase.auth().onAuthStateChanged(function(user){
       if (user) {
@@ -72,11 +70,9 @@ export default {
        that.signedIn = true
       }
       else {
-         console.log("Loaded ***")
         that.mode = 'signin'
       }
     })
-    console.log(this.signedIn,this.mode);
   },
   updated() {
     console.log(this.signedIn,this.userUid)
